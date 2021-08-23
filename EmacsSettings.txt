@@ -1,0 +1,9 @@
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+g++ -fsanitize=undefined 
+
+(setq-default c-basic-offset 8)
+
