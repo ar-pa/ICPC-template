@@ -1,0 +1,109 @@
+dp:
+	1- dp[i] = p * dp[i + 1] + (1 - p) * dp[i - 1], dp[0] = 0, dp[N] = K:
+		- for from 1 to N - 1 and update all dps. after some repeats dp[i] will become correct! It's strange...
+	2- dp[i] = p * (d + dp[i+1]) + (1-p) * min(dp[0], d2+dp[i+1]), d & d2 are some value.
+		- guess dp[0]. then run fill all dps. if the new dp[0] was bigger than your guess, then guess again with higher number. so you can use binary search on dp[0]!
+		- initialize dp[0]=0 and update dps. then use the dp[0] from last run and run again and fill dps. dp[0] will converge to correct answer but it may take long. so one may should use the previous approach. (CF103049G)
+	2- see that from which ancestors your dp updates. for example, if it uses sum of all the previous row, then you can store parial sum of your old dps.
+	3- find pattern from some small ones that can be computed using backtrack
+	4- use lemmas to make bounds of your dp smaller (CF1110D)
+	5- from this state update some other state that when you reach them they are correct(CF1313D)
+	6- make number of ways of updating dp as small as possible
+
+phi:
+	if x % y == 0 then: phi(xy) = y * phi(x)
+
+mobious inversion formula: if g(n) = sigma d|n: f(d), then f(n) = sigma d|n u(d)g(n / d) where u(d) is mobious function of d. mobious funcion of d:
+1- if d has square divisor => 0
+2- if d has odd prime roots => 1
+3- else -1
+
+- For simple graphs where every node has degree at least d, you can always find a cycle with length d+1. takes a maximal path. all neibors of the head of the path are in the path, which the furthest one can fomr a cycle with length d+1.
+
+- a number is square if and only if it has odd number of divisors(for n>=0).
+- chinese remainder theorem: x % b[i] = r[i], gcd(b[i],b[j])=1, N = b[1]*..., N[i] = b[1]*...*b[i-1]*b[i+1]*...
+x = (N[1]*r[1]*mod_inverse(N[1], b[1]) + ...) % N;
+- 1/n = 1/x + 1/y, assume that y=n+r, x=n+s. then sr=n^2.
+- 1/n = 1/(n+1) + 1/(n+1)*n
+- 2/(2n+1) = 1/(n+1) + 1/(n+1)(2n+1)
+- 1/(2n + 1) = 1/(2n + 3) + 1/((n + 1)*(2n + 3) – 1) + 1/(n + 2)*(2n + 1)*(2n + 3)
+- Fibonacci's Greedy Algorithm for finding Egyptian Fractions: for writing n/m as egyption fractions, always subtract the largest egyption fraction from remainder of the goal fraction. it will ends finally.
+- number of divisors is O(n^1/3) almost. for 10^9 is 1344 and for 10^18 is 10^5.
+- comparing (1/k) with its riemann sum => log(n) <= (sigma 1 <= k <= n) 1/k <= log(n) + 1
+
+- A De Bruijn sequence is a string that contains every string of length n exactly once as a substring. it turns out that each De Bruijn sequence corresponds to an Eulerian path in a graph. The idea is to construct a graph where each node contains a string of n−1 characters and there is and edge u->v if n-1 last letters of concat(u, {some character}) is v.
+
+- from Burnside’s lemma: number of necklaces is (sigma i=0 -> (n-1): different ways of building a sequence of length gcd(n, i)) / n.
+for proof consider a k-variant necklace. this is counted in each multiple of k(which means n/k times) exactly k times. so we count each valid necklace n times.
+
+- A Prufer code is a sequence of n−2 numbers that describes a labeled tree. The code is constructed by following a process that removes n−2 leaves from the tree. At each step, the leaf with the smallest label is removed, and the label of its parent is added to the code. so number of different labeled trees is n^(n-2). Prufer code is a bijection between all spanning trees of a complete graph and numerical sequences. if we have n vertices and k components, each with s1, ... , sk vertices, then number of connecting these components like a tree will be (s1*s2*...*sk)*n^(k-2).
+
+Random algorithmes: it is Monte Carlo if random may be wrong. it is Las Vegas if it is correct but may take too much time.
+	- select kth position if array is sorted: use QuickSelection. expected is (n + n/2 + n/4 + ... = 2n) (Las Vegas)
+	- check if AB=C (A,B,C are n*n matrices). use random vector(1*n) from {0,1}^n like X and check if A(BX)=CX.(monte carlo, O(n^2)). Each check won't work with probability less than 1/2.
+	- check if a very big number is prime(n<=10^18). take random number x. x^(n-1) % n must be 1. repeating this 30 times must be enough(Monte Carlo)
+	- color graph using two colors so at least half of the edges are satisfied. random coloring, each edge is 1/2 satisfied. expected is m/2(Las Vegas)
+	- (Las Vegas) min cut of a graph: contract of an edge is to merge two endpoints of that edge and remove loops but not multiple edges.
+	Assume that we contract edges randomly until 2 vertices left. this edges in the main graph are a cut and if in process of contracting edges, we didn't contract any edges of the min cut, then the obtained cut will be min cut.
+	Now define Contract(G) as to contract random edges of G until size of G becomes |G|/sqrt(2). Now use this Algorithm: 
+	function newcut(G): if(|G| == 2) return edge-cut, G1 = Contract(G), G2 = Contract(G), return min{newcut(G1), newcut(G2)} (this is O(n^2*log(n)))
+	The result cut will be min cut with probability 1/log(n).
+
+Denote by Z*p(z-star p) the set of invertible elements in Zp. for an odd prime it is {1,...,p-1}
+	- Z*p is cyclic group; There exists g such that Z*p = {1, g^1, g^2, ..., g^(p-2)}. in this situation g is a generator of Z*p.
+	- ord(x) is smallest a such that x^a=1(mod p).
+	- Lagrange Theorem: for all g in Z*p, phi(p) is divisible by ord(g). and if factorization of phi(p-1) is known, then ord(g) can be computed easily.
+		g^phi(p)=1. divide phi(p) by one of its factors and check if g^that is 1 or not.
+	- Quadratic Residue: q if x exists such that x^2=q(mod p).
+	- for odd prime p:
+		- each QR has exactly two roots. also half of numbers are QR.
+		- Euler Theorem: x is QR if and only if x^((p-1)/2)=1(mod p). for other numbers(except 0) like y: y^((p-1)/2)=-1(mod p)
+		- also if g is generator of Z*p, x=g^r is QR if and only if r is even.
+		- finding quadratic equations' roots: for ax^2+bx+c=0, if delta=b^2-4ac is QR, then we can use x1, x2 = (-b +- sqrt(b^2-4ac) / 2a) to find roots.
+		- solving polynomial equations of degree d can be done in polynomial time in d using Berlekamp Rabin algorithm which uses random.
+
+Tree Isophormism using hash:
+	- make tree rooted from every vertex. use dfs on tree and for finding hash of every node, first sort all its subtree hashes and then hash that list.
+	you can also use hash(sum(hashes)) but be careful about collisions. finally, hash of the root is hash of it. O(N^2)
+	- hang tree from a unique node like centroid(if tree has two centroids, put a node between them). then get hash of each node's subtree.
+	then hash of each node is determined by hash of itself and hash of all its parents(use dfs for this part). O(N*log(N))
+
+Tutte-berge matching theorem:
+	- Maximum matching of a graph G is equal to min{for all set of vertices like U: (|G| + |U| - ord(G - U)) / 2}. ord(G) is number of odd components.
+	- Witness of a graph is set U which makes the equation minimum. Witness of a graph is set of vertices which are in all of the maximum matchings.
+	- A graph with empty witness, has maxmimum matching equal to (|G| - 1) / 2. It's obvious that |G| is odd.
+
+Euler pentagonal theorem: Q(q) = (1-q)*(1-q^2)*(1-q^3)*... = 1 + sigma (-1)^n * (n*(3n-1)/2 + n*(3n+1)/2) = 1 - q - q^2 + q^5 + q^7 - q^12 + q^15 ...
+	- This shows that number of partioning a number to odd number of groups is equal to partioning to even number of groups. Or one of them is higher in exactly one(so the coefitients are either 1 or -1).
+	- Also, as this series is inverse of this series: A(q) = sigma: P(n) * q^n, and P(n) is number of ways to partition number n, so A(q) * Q(q) = 1.
+	then P(n) - P(n-1) - P(n-2) + P(n-5) + P(n-7) ... = 0. so we can compute P(n) recursively.
+	- Also, for counting partition of n, we can use FFT(NTT) to find inverse of Q(q). inverse of this series will be A(q)!!!
+
+Johnson rule:  List the jobs and their times at each work center.
+    Select the job with the shortest activity time. If that activity time is for the first work center, then schedule the job first. If that activity time is for the second work center then schedule the job last. Break ties arbitrarily.
+    Repeat this, working towards the center of the job schedule until all jobs have been scheduled.
+
+Berlekamp-massey Algorithm(O(n^2)): Find shortest linear recurrence. If degree of recurrence is n, then we need 2n first numbers of the sequence.
+Generating functions:
+	- 1/(1-ax) = 1 + ax + a^2x^2 + a^3x^3 + ...
+	- 1/(1-x)^2 = d(1/(1-x))/dx = 0 + x + 2x + 3x^2 + 4x^3 + ... So coefs will be: 0, 1, 2, 3, 4, ...
+
+
+Min Cut=Max Flow: max flow is equal to the min cut between source and sink. So there will be a set S including source which total capacity of edges going out from S is equal to Max Flow. If not, we can find an augmenting path from sourc to sink.
+
+Cipolla Algorithm: x^2 (mod p) == n (mod p). p is odd prime. given n, find x?
+choose A such that A^2-n is not square mod p (a number z is square mod p if (z^(p+1)/2)%p == 1). probability of choosing A random is (p-1)/2p, so on average 2 gueses will be enough. Then the x will equal to (A+sqrt(A^2-n))^((p+1)/2).
+
+in an undirected weighted graph, if we get xor of weights of each cycle in dfs tree made with a backage, and then build gausse on that, then we can make xor of any cycle or closed walk with this gausse. so max xor of a walk from u to v will be: gauses_make_max(xor_of_a_random_walk_from_u_to_v).
+
+cos(A+B) = cos(B)cos(A) - sin(B)sin(A)
+sin(A+B) = cos(B)sin(A) + sin(B)cos(A)
+rotation matrix = [cos(A) -sin(A)]
+				  [sin(A)  cos(A)]
+rot(v, A) = rotation_matrix(A)*v
+
+catalan number = 1/(n+1) * C(2n, n)
+
+Random Weighted Majority Algorithm: suppose we have n rounds of prediction and m expert to predict them. each round we know predictions of the experts and then we predict to. predictions could be 0 or 1. At the end of n rounds, we want to make wrong predictions no more than for example, 1.3 of z which z is the number of wrong predictions of the best expert.
+Solution: give every expert weight B^x which x is the number of his wrong predictions. every round, predict using a random weighted choosing on sum of B^x. if we choose B < 1, then Expected number of our mistakes will be (ln(1/B)*z + ln(n)) / (1-B) which for:
+B=1/2: 1.39z + 2ln(n), B=3/4: 1.15z + 4ln(n). for more information and proof go to wikipedia.
