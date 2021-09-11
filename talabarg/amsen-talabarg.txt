@@ -1,0 +1,10 @@
+Knuth's optimisation:
++ mostly used in dp[l][r] (dp interval on array)
++ O(n^3) ---> O(n^2)
++ dp formula must be: dp[i][j] = min_{k=i+1}^{j-1}(dp[i][k] + dp[k][j]) + C[i][j]
++ A[i][j] = smallest k, which dp[i][j] = dp[i][k] + dp[k][j] + C[i][j] (k is one of answers)
++ Conditions:
+	- A[i][j-1] <= A[i][j] <= A[i+1][j]
+	- (a<=b<=c<=d)
+	- C[a][c] + C[b][d] <= C[a][d] + C[b][c]
+	- C[b][c] <= C[a][d]
