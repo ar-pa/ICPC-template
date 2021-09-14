@@ -116,6 +116,7 @@ M =
 ...
 [0 0 0 0 ... 1]
 [ck ck-1 ... c1]
+
 now, M*[f(0)
 		f(1)
 		...
@@ -123,3 +124,9 @@ now, M*[f(0)
 					f(2)
 					...
 					f(k)]
+
+Lucas theorem: for a prime p: C(M, N)%p = (C(m0, n0)*C(m2, n2)*...*C(mk, nk))%p, which M=mk*p^k + m(k-1)*p^(k-1) + ... + m0 and N=nk*p^k+n(k-1)*p^(k-1)+...+n0.
+in other words, m[0..k] and n[0..k] are base p expansions of m and n.
+
+Legendre's formula: For any prime number p and any positive integer n, there is n! is divisible by p^(sigma on i: floor(n/p^i)) at most.
+Kummer's theorem: N! is divisible by p^((N - sigma(ni)) / (p-1)) at most which N=nk*p^k+n(k-1)*p^(k-1)+...+n0.
