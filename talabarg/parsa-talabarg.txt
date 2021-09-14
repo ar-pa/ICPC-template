@@ -129,4 +129,5 @@ Lucas theorem: for a prime p: C(M, N)%p = (C(m0, n0)*C(m2, n2)*...*C(mk, nk))%p,
 in other words, m[0..k] and n[0..k] are base p expansions of m and n.
 
 Legendre's formula: For any prime number p and any positive integer n, there is n! is divisible by p^(sigma on i: floor(n/p^i)) at most.
-Kummer's theorem: N! is divisible by p^((N - sigma(ni)) / (p-1)) at most which N=nk*p^k+n(k-1)*p^(k-1)+...+n0.
+Kummer's theorem: N! is divisible by p^((N - sigma(ni)) / (p-1)) at most which N=nk*p^k+n(k-1)*p^(k-1)+...+n0. 
+From Kummer can be inferred that if p is prime and y is the biggest number which p^y|x, then for all i < p^y, C(x, i) is divisible by p^(y-f(i)). f(i) is the biggest number which p^f(i)|i.
