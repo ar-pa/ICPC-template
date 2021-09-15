@@ -4,7 +4,7 @@
 int mark[MAXL];
 int P[50000], Pt = 0;
 void sieve() {
-    register int i, j, k;
+    register int i, j, k; // clang++ >=17 compile error
     SET(1);
     int n = 46340;
     for (i = 2; i <= n; i++) {
@@ -15,7 +15,7 @@ void sieve() {
         }
     }
 }
-long long mul(unsigned long long a, unsigned long long b, unsigned long long mod) { 
+long long mul(unsigned long long a, unsigned long long b, unsigned long long mod) { // can be handled with int128 
     long long ret = 0; 
     for (a %= mod, b %= mod; b != 0; b >>= 1, a <<= 1, a = a >= mod ? a - mod : a) {
         if (b&1) {
@@ -64,7 +64,7 @@ long long mpow2(long long x, long long y, long long mod) {
     }
     return ret % mod;
 }
-int isPrime(long long p) { // implements by miller-babin
+int isPrime(long long p) { // implements by miller-rabin
     if (p < 2 || !(p&1))	return 0;
     if (p == 2)				return 1;
     long long q = p-1, a, t;
