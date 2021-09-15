@@ -24,6 +24,7 @@ int maxflow() {
 	return ans;
 }
 
+// min cost
 int head[maxn], to[maxm], prv[maxm], cap[maxm], cost[maxm], ecnt;
 void add(int v, int u, int cst, int vu, int uv = 0) {
 	prv[ecnt] = head[v], to[ecnt] = u, cap[ecnt] = vu, cost[ecnt] = cst, head[v] = ecnt++;
