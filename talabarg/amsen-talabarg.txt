@@ -16,4 +16,15 @@ Phi:
 + Properties:
 	- a|b ==> phi(a)|phi(b)
 	- phi(n*m) = phi(m) * phi(n) * d/phi(d) where d = gcd(n, m)
- 
+
+Carmichael function:
++ h(n) = minimum m which for all a, a^m mod n = 1
++ h(n) = lcm(h(p1^r1), h(p2^r2), ..., h(pk^rk))
++ h(p^r) = p^(r-1) * (p-1) for p > 2
++ h(2^r) = 2^(r-2) for r >= 3
++ Properties:
+	- If a^m mod n == 1 then m | h(n)
+	- h(n) = max(ord_n(a) for all a where gcd(a, n) == 1)
+	- h(n) | phi(n)
+	- from 1 to p^r there is phi(h(p^r)) number like x where ord(x) == h(p^r)
+	- last statement may be true for all n instead of p^r
