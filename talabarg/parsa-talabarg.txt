@@ -21,8 +21,10 @@ mobious inversion formula: if g(n) = sigma d|n: f(d), then f(n) = sigma d|n u(d)
 - For simple graphs where every node has degree at least d, you can always find a cycle with length d+1. takes a maximal path. all neibors of the head of the path are in the path, which the furthest one can fomr a cycle with length d+1.
 
 - a number is square if and only if it has odd number of divisors(for n>=0).
-- chinese remainder theorem: x % b[i] = r[i], gcd(b[i],b[j])=1, N = b[1]*..., N[i] = b[1]*...*b[i-1]*b[i+1]*...
+
+- chinese remainder theorem: x % b[i] = r[i], gcd(b[i],b[j])=1, N = b[1]*... , N[i] = b[1]*...*b[i-1]*b[i+1]*...
 x = (N[1]*r[1]*mod_inverse(N[1], b[1]) + ...) % N;
+
 - 1/n = 1/x + 1/y, assume that y=n+r, x=n+s. then sr=n^2.
 - 1/n = 1/(n+1) + 1/(n+1)*n
 - 2/(2n+1) = 1/(n+1) + 1/(n+1)(2n+1)
