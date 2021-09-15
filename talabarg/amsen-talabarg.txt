@@ -8,3 +8,12 @@ Knuth's optimisation:
 	- (a<=b<=c<=d)
 	- C[a][c] + C[b][d] <= C[a][d] + C[b][c]
 	- C[b][c] <= C[a][d]
+
+Phi:
++ phi(n) = Number of 1<=k<=n which gcd(k, n) == 1
++ phi(n) = n * (1 - 1/p1) * (1 - 1/p2) * ... (1 - 1/pt)
++ sum_(d|n) (phi(d)) = n
++ Properties:
+	- a|b ==> phi(a)|phi(b)
+	- phi(n*m) = phi(m) * phi(n) * d/phi(d) where d = gcd(n, m)
+ 
