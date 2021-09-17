@@ -1,3 +1,5 @@
+// A[1..n][1..m]*ANS=A[1..n][m+1]. this functions will find ANS and returns number of different answer
+// which can be 0, 1 or INF.
 int gauss (vector < vector<double> > a, vector<double> & ans) {
 	int n = (int) a.size();
 	int m = (int) a[0].size() - 1;
