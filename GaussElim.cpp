@@ -1,4 +1,4 @@
-// A[1..n][1..m]*ANS=A[1..n][m+1]. this functions will find ANS and returns number of different answer
+// A[0..n-1][0..m-1]*ANS=A[1..n][m]. this functions will find ANS and returns number of different answer
 // which can be 0, 1 or INF.
 int gauss (vector < vector<double> > a, vector<double> & ans) {
 	int n = (int) a.size();
