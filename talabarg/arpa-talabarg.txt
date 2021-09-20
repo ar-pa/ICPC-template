@@ -1,0 +1,9 @@
+Tree:
+	Queries on path or counting pathes with special property can be done using Segment Tree, Centroid, Sack or HLD.
+	Centroid:
+		lca(v, u) in centroid-tree lies in the path v, u in the main tree.
+	HLD converts tree to an array. Then we can build segment tree.
+String:
+	Suffix Array:
+		This makes any kind of abstract strings comparable. For example, given a tree with a character on each edge, let s(v) be the string read from v to the root, suffix array makes it possible to compare and calculate lcp of s(v), s(u) in O(1).
+
