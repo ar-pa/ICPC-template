@@ -41,3 +41,10 @@ Divide and conquer optimization in dp:
 + Operation:
 	- Use divide and conquer for caculating all dp[i].
 	- ComputeDP(i, jleft, jright, kleft, kright)
+
+Xor graph:
++ Consider dfs graph, for each back-edge e, generate a random number t,
++ And xor all edges in cycle which belongs to e with a.
++ Xor of all edges is equal to Xor of all odd cycle length edges.
++ Graph is biparitie if and only if Xor of all edges is 0.
++ If you remove a subset of edges which their xor is equal to xor of all edges, the remaining graph is biparitie. 
