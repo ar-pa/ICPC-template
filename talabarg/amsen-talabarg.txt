@@ -8,6 +8,8 @@ Knuth's optimisation:
 	- (a<=b<=c<=d)
 	- C[a][c] + C[b][d] <= C[a][d] + C[b][c]
 	- C[b][c] <= C[a][d]
++ Operation:
+	- Check all k's between A[i][j-1] and A[i+1][j]
 
 Phi:
 + phi(n) = Number of 1<=k<=n which gcd(k, n) == 1
@@ -28,3 +30,14 @@ Carmichael function:
 	- h(n) | phi(n)
 	- from 1 to p^r there is phi(h(p^r)) number like x where ord(x) == h(p^r)
 	- last statement may be true for all n instead of p^r
+
+Divide and conquer optimization in dp:
++ mostly used in dp[i][j] (i events happened from 1 to j)
++ O(mn^2) ---> O(mn*lgn)
++ dp formula must be: dp[i][j] = min_{k<j}(dp[i-1][k] + C[k+1][j])
++ A[i][j] = smallest k which satisfies dp formula.
++ Condition:
+	- A[i][j] <= A[i][j+1]
++ Operation:
+	- Use divide and conquer for caculating all dp[i].
+	- ComputeDP(i, jleft, jright, kleft, kright)
