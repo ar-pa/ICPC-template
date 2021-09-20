@@ -25,7 +25,7 @@ cerr << "\nTime elapsed: " << 1000 * clock() / CLOCKS_PER_SEC << "ms\n";
 log10l(n) // if n is long long, after nearly 10^15, the function may output 1 more than the real answer.
 
 mt19937_64 eng(time(0)); uniform_int_distribution <long long> distr; // distr(eng)
-shuffle(permutation.begin(), permutation.end(), rng); // random shuffle
+shuffle(permutation.begin(), permutation.end(), eng); // random shuffle
 
 // comparator for priority_queue
 struct MyComp { 

@@ -44,7 +44,7 @@ Random algorithmes: it is Monte Carlo if random may be wrong. it is Las Vegas if
 	- select kth position if array is sorted: use QuickSelection. expected is (n + n/2 + n/4 + ... = 2n) (Las Vegas)
 	- check if AB=C (A,B,C are n*n matrices). use random vector(1*n) from {0,1}^n like X and check if A(BX)=CX.(monte carlo, O(n^2)). Each check won't work with probability less than 1/2.
 	- check if a very big number is prime(n<=10^18). take random number x. x^(n-1) % n must be 1. repeating this 30 times must be enough(Monte Carlo)
-	- color graph using two colors so at least half of the edges are satisfied. random coloring, each edge is 1/2 satisfied. expected is m/2(Las Vegas)
+	- color graph using two colors so at least half of the edges are between two colors. random coloring, each edge is 1/2 satisfied. expected is m/2(Las Vegas)
 	- (Las Vegas) min cut of a graph: contract of an edge is to merge two endpoints of that edge and remove loops but not multiple edges.
 	Assume that we contract edges randomly until 2 vertices left. this edges in the main graph are a cut and if in process of contracting edges, we didn't contract any edges of the min cut, then the obtained cut will be min cut.
 	Now define Contract(G) as to contract random edges of G until size of G becomes |G|/sqrt(2). Now use this Algorithm: 
