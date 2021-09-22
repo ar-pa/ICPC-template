@@ -140,3 +140,16 @@ One can create an analogous polynomial p(A) in the matrix A instead of the scala
 A^n=(∑i=1->n)(ci*A^(n−i)).
 
 Menger's theorem: in a finite graph, the size of a minimum cut vertex is equal to the maximum number of disjoint paths that can be found between any pair of vertices. This is also true for finding cut edge set. This theory is genralized by max-flow-min-cut theory.
+
+planar graphs:
+- Wagner's theorem: A finite graph is planar if and only if it does not have K 5 {\displaystyle K_{5}} K_{5} or K 3 , 3 {\displaystyle K_{3,3}} K_{3,3} as a minor. A minor of a graph results from taking a subgraph and repeatedly contracting an edge into a vertex.
+- Kuratowski's theorem: A finite graph is planar if and only if it does not contain a subgraph that is a subdivision of the complete graph K5 or the complete bipartite graph K(3,3). A subdivision of a graph results from inserting vertices into edges (for example, changing an edge •——• to •—•—•) zero or more times.
+- for simple, connected planar graphs with v ≥ 3:
+	- e ≤ 3v − 6;
+	- If there are no cycles of length 3, then e ≤ 2v − 4.
+	- f ≤ 2v − 4.
+	- v + f = e + 2
+- We say that two circles drawn in a plane kiss whenever they intersect in exactly one point. A "coin graph" is a graph formed by a set of circles, no two of which have overlapping interiors, by making a vertex for each circle and an edge for each pair of circles that kiss. The circle packing theorem states that a graph is planar if and only if it is a coin graph. This means that every simple planar graph can be embedded in the plane in such a way that its edges are straight line segments.
+- Every face of an edge-maximal planar graph is traingle and it has exactly 3v-6 edges and 2v-4 faces. This graph is at least 3-connected.
+- every planar graph is 4-colorable. 
+- Dual of planar graph G*: choose one vertex in each face of G and for each edge e introduce a new edge in G* connecting the two vertices in G* corresponding to the two faces in G that meet at e. Furthermore, this edge is drawn so that it crosses e exactly once and that no other edge of G or G* is intersected. G* has as many edges as G, as many vertices as G has faces and as many faces as G has vertices. Also G**=G.
