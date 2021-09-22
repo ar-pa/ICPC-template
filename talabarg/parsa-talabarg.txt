@@ -92,6 +92,19 @@ Generating functions:
 
 
 Min Cut=Max Flow: max flow is equal to the min cut between source and sink. So there will be a set S including source which total capacity of edges going out from S is equal to Max Flow. If not, we can find an augmenting path from sourc to sink.
+- algorithms: ford-folkerson O(E * maxFlow). Dinic: O(V^2*E).
+- For a unit network — a network in which each vertex, except for source and sink, either has a single entering edge of capacity one, or a single outgoing edge of capacity one, and all other capacities are arbitrary integers, Dinic runs in O(E*sqrt(V)). for example, matching in bipartite graph.
+- There is also dinic with a trick called "low scaling" which runs in O(N * M * log(MC)), where MC is maximum edge capacity.
+- feasible flow: flow of each edges d(u, v) <= f(u, v) <= c(u,v). make a new source st and sinc en and:
+ 	1- make every edge u->v, c(u, v)-d(u, v).
+ 	2- make edge st->u with (sigma(v:inputs of u))(d(v, u))
+ 	3- make edge u->en with (sigma(v:outputs of u))(d(u, v))
+ 	4- add an edge between original (sinc, source) with infinity cap.
+ 	now if the new graph has a "saturated flow", then original graph has feasible flow. 
+ 	- This problem can have some variants:
+ 		- Determine if the flow is feasible: we solved it above.
+ 		- Maximum feasible flow: To solve this, change the original graph based on flows of the edges of the new graph and ...
+ 		- Minimum feasible flow: for this use binary search on capacity of the edge between original graph's (sinc, source).
 
 Cipolla Algorithm: x^2 (mod p) == n (mod p). p is odd prime. given n, find x?
 choose A such that A^2-n is not square mod p (a number z is square mod p if (z^(p+1)/2)%p == 1). probability of choosing A random is (p-1)/2p, so on average 2 gueses will be enough. Then the x will equal to (A+sqrt(A^2-n))^((p+1)/2).
@@ -133,7 +146,6 @@ in other words, m[0..k] and n[0..k] are base p expansions of m and n.
 Legendre's formula: For any prime number p and any positive integer n, there is n! is divisible by p^(sigma on i: floor(n/p^i)) at most.
 Kummer's theorem: N! is divisible by p^((N - sigma(ni)) / (p-1)) at most which N=nk*p^k+n(k-1)*p^(k-1)+...+n0. 
 From Kummer can be inferred that if p is prime and y is the biggest number which p^y|x, then for all i < p^y, C(x, i) is divisible by p^(y-f(i)). f(i) is the biggest number which p^f(i)|i.
-
 
 If A is a given n×n matrix and I is the n×n identity matrix, then the characteristic polynomial of A is defined as P(λ)=det(λ*I − A), where det is the determinant operation. Since the entries of the matrix (λ*I − A) are (linear or constant) polynomials in λ, the determinant is also an n-th order monic polynomial in λ. p(λ)=λ^n + c_(n − 1)*λ^(n−1) + ⋯ + c_1*λ + c_0. roots of this polynomial are eigenvalues of A.
 One can create an analogous polynomial p(A) in the matrix A instead of the scalar variable λ, defined as p(A)=A^n + c_(n−1)*A^(n−1) + ⋯ + c_1*A + c_0*I. The Cayley–Hamilton theorem states that p(A)=0, so A^n can be to be expressed as a linear combination of the lower matrix powers of A:

@@ -1,6 +1,9 @@
 int mat[N][2];
 bool mark[N];
 
+// I hope this is Hopcroft–Karp algorithm. O(E * sqrt(V)).
+// for sparse random graphs, runs in O(E * log(v)) with high probability.
+
 bool dfs(int v){
     if(mark[v])  return 0;
     mark[v] = 1;
