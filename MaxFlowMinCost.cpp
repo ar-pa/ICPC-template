@@ -1,4 +1,4 @@
-// Ford Folkerson: Runs in O(E * maxflow)
+// Ford Fulkerson: Runs in O(E * maxflow)
 
 //be careful about   memset(h,-1,sizeof h);
 int head[maxn], to[maxm], prv[maxm], cap[maxm], cost[maxm], ecnt;
