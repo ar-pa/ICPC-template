@@ -1,7 +1,7 @@
 dp:
 	1- dp[i] = p * dp[i + 1] + (1 - p) * dp[i - 1], dp[0] = 0, dp[N] = K:
 		- for from 1 to N - 1 and update all dps. after some repeats dp[i] will become correct! It's strange...
-	2- dp[i] = p * (d + dp[i+1]) + (1-p) * min(dp[0], d2+dp[i+1]), d & d2 are some value.
+	2- dp[i] = p * (d + dp[i+1]) + (1-p) * min(dp[0], d2+dp[i+1]), d & d2 are some values.
 		- guess dp[0]. then run fill all dps. if the new dp[0] was bigger than your guess, then guess again with higher number. so you can use binary search on dp[0]!
 		- initialize dp[0]=0 and update dps. then use the dp[0] from last run and run again and fill dps. dp[0] will converge to correct answer but it may take long. so one may should use the previous approach. (CF103049G)
 	2- see that from which ancestors your dp updates. for example, if it uses sum of all the previous row, then you can store parial sum of your old dps.
@@ -115,7 +115,6 @@ Min Cut=Max Flow: max flow is equal to the min cut between source and sink. So t
 	- Min cost Circulation: There is no sinc and source. Use some cycles of the graph and make 0 flow but satisfy lower & upper bounds of flows on every edges, while minimizing cost of flow. 
 
 
-
 Cipolla Algorithm: x^2 (mod p) == n (mod p). p is odd prime. given n, find x?
 choose A such that A^2-n is not square mod p (a number z is square mod p if (z^(p+1)/2)%p == 1). probability of choosing A random is (p-1)/2p, so on average 2 gueses will be enough. Then the x will equal to (A+sqrt(A^2-n))^((p+1)/2).
 
@@ -167,11 +166,13 @@ planar graphs:
 - Wagner's theorem: A finite graph is planar if and only if it does not have K 5 {\displaystyle K_{5}} K_{5} or K 3 , 3 {\displaystyle K_{3,3}} K_{3,3} as a minor. A minor of a graph results from taking a subgraph and repeatedly contracting an edge into a vertex.
 - Kuratowski's theorem: A finite graph is planar if and only if it does not contain a subgraph that is a subdivision of the complete graph K5 or the complete bipartite graph K(3,3). A subdivision of a graph results from inserting vertices into edges (for example, changing an edge •——• to •—•—•) zero or more times.
 - for simple, connected planar graphs with v ≥ 3:
-	- e ≤ 3v − 6;
-	- If there are no cycles of length 3, then e ≤ 2v − 4.
-	- f ≤ 2v − 4.
+	- e ≤ 3v − 6
+	- If there are no cycles of length 3, then e ≤ 2v − 4
+	- f ≤ 2v − 4
 	- v + f = e + 2
 - We say that two circles drawn in a plane kiss whenever they intersect in exactly one point. A "coin graph" is a graph formed by a set of circles, no two of which have overlapping interiors, by making a vertex for each circle and an edge for each pair of circles that kiss. The circle packing theorem states that a graph is planar if and only if it is a coin graph. This means that every simple planar graph can be embedded in the plane in such a way that its edges are straight line segments.
 - Every face of an edge-maximal planar graph is traingle and it has exactly 3v-6 edges and 2v-4 faces. This graph is at least 3-connected.
 - every planar graph is 4-colorable. 
 - Dual of planar graph G*: choose one vertex in each face of G and for each edge e introduce a new edge in G* connecting the two vertices in G* corresponding to the two faces in G that meet at e. Furthermore, this edge is drawn so that it crosses e exactly once and that no other edge of G or G* is intersected. G* has as many edges as G, as many vertices as G has faces and as many faces as G has vertices. Also G**=G.
+
+Kirchhoff Law: Let A be the adjacency matrix: A[u,v] is the number of edges between u and v. Let D be the degree matrix of the graph: a diagonal matrix with D[u,u] being the degree of vertex u (including multiple edges and loops). The Laplacian matrix of the graph is defined as L=D−A. Now All cofactors of this matrix are equal to each other, and they are equal to the number of spanning trees of the graph. The (i,j) cofactor of a matrix is the product of (−1)^(i+j) with the determinant of the matrix that you get after removing the i-th row and j-th column.
