@@ -1,15 +1,15 @@
 // Dinic: O(V^2*E).
 // Runs in O(E * sqrt(V)) for finding matching in bipartite graph (for more specification go to parsa's talabarg). 
 // For not using long long, make all "ll"s int and change infs. 
-const int maxn = 2e3 + 17, maxm = 5e4 + 17, inf = 1e9;
-const int maxn = 2e3 + 17, maxm = 1e4 + 17;
+const int maxn = 2e3 + 17, maxm = 5e4 + 17;
+const ll INF_CAP = (ll)1e10, INF = (ll)1e17;
 int ptr[maxn], head[maxn], prv[maxm], to[maxm], d[maxn], q[maxn], dis[maxn], source = maxn - 1, sink = maxn - 2, ecnt;
-ll cap[maxm], inf = (ll)1e17, inf_cap = (ll)1e13;
+ll cap[maxm];
 void init(){
     memset(head, -1, sizeof head);
     ecnt = 0;
 }
-void add(int v, int u, int vu, int uv = 0){
+void add_edge(int v, int u, ll vu, ll uv = 0){
     to[ecnt] = u, prv[ecnt] = head[v], cap[ecnt] = vu, head[v] = ecnt++;
     to[ecnt] = v, prv[ecnt] = head[u], cap[ecnt] = uv, head[u] = ecnt++;
 }
@@ -29,7 +29,7 @@ bool bfs(){
     }
     return 0;
 }
-ll dfs(int v, ll f = inf){
+ll dfs(int v, ll f = INF){
     if(v == sink || f == 0)
         return f;
     ll ret = 0;
