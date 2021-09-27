@@ -1,8 +1,7 @@
 // The error in approximating an integral by Simpson's formula is: −1/90* ((b−a)/2)^5 * f(4)(ξ)
 // f(4) is the forth derivative of f.
 // ξ is some number between a and b.
-
-const int N = 1000 * 1000; // number of steps (already multiplied by 2)
+const int N = 1000000; // number of steps (already multiplied by 2)
 double simpson_integration(double a, double b){ // Find integration in [a, b] range.
     double h = (b - a) / N;
     double s = f(a) + f(b); // a = x_0 and b = x_2n
