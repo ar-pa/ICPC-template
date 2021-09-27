@@ -24,13 +24,14 @@ void dfs(int v, int part){
 void maximum_matching() { // can be used to find max independent set
     memset(mat, -1, sizeof mat);
     bool br = 0;
-    int ans = n;
+    int ans = n; // size of maximum matching will be n-ans.
     while(br ^= 1) {
 		memset(mark, 0, sizeof mark);
 		for(int i = 0; i < n; i++)
 		    if(mat[i][0] == -1 && dfs(i))
 				ans--, br = 0;
     }
+
     for(int i = 0; i < n; i++)
 		for(int j = 0; j < 2; j++)
 	    	if(seen[i][j] == 0 && mat[i][j] == -1)
@@ -38,7 +39,7 @@ void maximum_matching() { // can be used to find max independent set
 
     cout << ans << '\n';
     for(int i = 0; i < n; i++)
-	if(bad[i] == 0 && seen[i][0] == 1)
-	    cout << i + 1 << ' ';
+		if(bad[i] == 0 && seen[i][0] == 1)
+		    cout << i + 1 << ' ';
     cout << '\n';
 }

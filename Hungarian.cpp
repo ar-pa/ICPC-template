@@ -1,5 +1,5 @@
 typedef long long ll;
-const ll INFL = (1 << 60);
+const ll INFL = (1LL << 60);
 using Weight = ll;
 const Weight InfWeight = INFL;
 
