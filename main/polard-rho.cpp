@@ -22,7 +22,7 @@ ll mul(ull a, ull b, ull mod) { // can be handled with int128
     for (a %= mod, b %= mod; b != 0; b >>= 1, a <<= 1, a = a >= mod ? a - mod : a) {
         if (b&1) {
             ret += a;
-            if (ret >= mod)	ret -= mod;
+            if (ret >= mod) ret -= mod;
         }
     } 
     return ret; 
@@ -45,7 +45,7 @@ ll llgcd(ll x, ll y) {
 ll inverse(ll x, ll p) {
     ll g, b, r;
     exgcd(x, p, g, r, b);
-    if (g < 0)	r = -r;
+    if (g < 0)  r = -r;
     return (r%p + p)%p;
 }
 ll mpow(ll x, ll y, ll mod) { // mod < 2^32 
@@ -67,11 +67,11 @@ ll mpow2(ll x, ll y, ll mod) {
     return ret % mod;
 }
 int isPrime(ll p) { // implements by miller-rabin
-    if (p < 2 || !(p&1))	return 0;
-    if (p == 2)				return 1;
+    if (p < 2 || !(p&1))  return 0;
+    if (p == 2)       return 1;
     ll q = p-1, a, t;
     int k = 0, b = 0;
-    while (!(q&1))	q >>= 1, k++;
+    while (!(q&1))  q >>= 1, k++;
     for (int it = 0; it < 2; it++) {
         a = rand()%(p-4) + 2;
         t = mpow2(a, q, p);
@@ -90,7 +90,7 @@ ll pollard_rho(ll n, ll c) {
     ll x = 2, y = 2, i = 1, k = 2, d;
     while (true) {
         x = (mul(x, x, n) + c);
-        if (x >= n)	x -= n;
+        if (x >= n) x -= n;
         d = llgcd(x - y, n);
         if (d > 1) return d;
         if (++i == k) y = x, k <<= 1;
@@ -99,16 +99,16 @@ ll pollard_rho(ll n, ll c) {
 }
 void factorize(int n, vector<ll> &f) {
     for (int i = 0; i < Pt && P[i]*P[i] <= n; i++) {
-    	if (n%P[i] == 0) {
-    		while (n%P[i] == 0)
-    			f.push_back(P[i]), n /= P[i];
-    	}
+      if (n%P[i] == 0) {
+        while (n%P[i] == 0)
+          f.push_back(P[i]), n /= P[i];
+      }
     }
-    if (n != 1)	f.push_back(n);
+    if (n != 1) f.push_back(n);
 }
 void llfactorize(ll n, vector<ll> &f) {
-    if (n == 1)	
-        return ;	
+    if (n == 1) 
+        return ;  
     if (n < 1e+9) {
         factorize(n, f);
         return ;
