@@ -1,5 +1,4 @@
 int sa[maxl], pos[maxl], tmp[maxl], lcp[maxl];
-
 void buildSA(string s) {
     int n = s.size();
     for (int i = 0; i < n; i++)
@@ -8,8 +7,7 @@ void buildSA(string s) {
         auto sufCmp = [&n, &gap](int i, int j) {
             if (pos[i] != pos[j])
                 return pos[i] < pos[j];
-            i += gap;
-            j += gap;
+            i += gap; j += gap;
             return (i < n && j < n) ? pos[i] < pos[j] : i > j;
         };
         sort(sa, sa + n, sufCmp);

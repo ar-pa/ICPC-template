@@ -1,23 +1,3 @@
-// -----------------------------------------------------------------
-// A straightforward, but probably sub-optimal KD-tree implmentation
-// that's probably good enough for most things (current it's a
-// 2D-tree)
-//
-//  - constructs from n points in O(n lg^2 n) time
-//  - handles nearest-neighbor query in O(lg n) if points are well
-//    distributed
-//  - worst case for nearest-neighbor may be linear in pathological
-//    case
-//
-// Sonny Chan, Stanford University, April 2009
-// -----------------------------------------------------------------
-
-#include <iostream>
-#include <vector>
-#include <limits>
-#include <cstdlib>
-
-using namespace std;
 
 // number type for coordinates, and its maximum value
 typedef long long ntype;
@@ -182,27 +162,3 @@ struct kdtree
         return search(root, p);
     }
 };
-
-// --------------------------------------------------------------------------
-// some basic test code here
-
-int main()
-{
-    // generate some random points for a kd-tree
-    vector<point> vp;
-    for (int i = 0; i < 100000; ++i) {
-        vp.push_back(point(rand()%100000, rand()%100000));
-    }
-    kdtree tree(vp);
-    
-    // query some points
-    for (int i = 0; i < 10; ++i) {
-        point q(rand()%100000, rand()%100000);
-        cout << "Closest squared distance to (" << q.x << ", " << q.y << ")"
-             << " is " << tree.nearest(q) << endl;
-    }    
-
-    return 0;
-}
-
-// --------------------------------------------------------------------------

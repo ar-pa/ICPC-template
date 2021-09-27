@@ -1,10 +1,3 @@
-// In the name of Allah.
-// We're nothing and you're everything.
-// Ya Ali!
- 
-#include <bits/stdc++.h>
-using namespace std;
-
 const int maxn = 2e5 + 17;
 struct Node{
   int k, p;
@@ -27,23 +20,7 @@ void insert(Ni &t, Ni it){
   else
     split(t, it -> k, it -> l, it -> r), t = it;
 }
-int main(){
-  ios::sync_with_stdio(0), cin.tie(0);
-  
-}
-
-
-// Implicit treap // GSS6
-
-
-// In the name of Allah.
-// We're nothing and you're everything.
-// Ya Ali!
- 
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
- 
+// Implicit treap // GSS6 
 const int maxn = 1e6 + 17, mod = 998244353;
 int nxP(){
   static int cur = 1;
@@ -130,50 +107,3 @@ void replace(int k, int v){
   erase(k);
   insert(k, v);
 }
-void print(Ni v, int h = 0){
-  return;
-  if(!v)
-    return ;
-  cerr << string(h * 2, ' ') << v -> k << ' ' << v -> p << ' ' << v -> val << " (" << v -> ans.pre << ' ' 
-  << v -> ans.suf << ' ' << v -> ans.sum << ' ' << v -> ans.ans << ')' << '\n';
-  print(v -> l, h + 1);
-  print(v -> r, h + 1);
-}
-int main(){
-  ios::sync_with_stdio(0), cin.tie(0);
-  int n;
-  cin >> n;
-  for(int i = 0; i < n; i++){
-    int x;
-    cin >> x;
-    insert(i, x);
-  }
-  print(root);
-  int q;
-  cin >> q;
-  while(q--){
-    char ty;
-    cin >> ty;
-    if(ty == 'Q'){
-      int l, r;
-      cin >> l >> r;
-      cout << get(l - 1, r) << '\n';
-    }
-    else if(ty == 'I'){
-      int p, x;
-      cin >> p >> x;
-      insert(p - 1, x);
-    }
-    else if(ty == 'R'){
-      int p, x;
-      cin >> p >> x;
-      replace(p - 1, x);
-    }
-    else{
-      int p;
-      cin >> p;
-      erase(p - 1);
-    }
-    print(root);    
-  }
-} 
